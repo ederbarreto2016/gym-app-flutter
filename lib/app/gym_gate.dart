@@ -5,6 +5,7 @@ import 'package:gym_app/core/local_storage_provider.dart';
 import 'gym_providers.dart';
 import '../features/gym/presentation/create_gym_page.dart';
 import '../features/gym/presentation/select_gym_page.dart';
+import '../features/gym/presentation/gym_home_page.dart';
 
 class GymGate extends ConsumerWidget {
   const GymGate({super.key});
@@ -30,10 +31,7 @@ class GymGate extends ConsumerWidget {
 
         final currentGymId = ref.watch(activeGymIdProvider);
         if (currentGymId != null) {
-          return Scaffold(
-            appBar: AppBar(title: const Text('Academia ativa')),
-            body: Center(child: Text('gymId: $currentGymId')),
-          );
+          return const GymHomePage();
         }
 
         final gymsAsync = ref.watch(myOwnedGymsProvider);

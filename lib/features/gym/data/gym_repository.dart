@@ -40,4 +40,10 @@ class GymRepository {
           (snap) => snap.docs.map((d) => Gym.fromMap(d.id, d.data())).toList(),
         );
   }
+
+  Future<Gym> getGymById(String gymId) async {
+    final doc = await _db.collection('gyms').doc(gymId).get();
+    if (!doc.exists) throw Exception('Academia não encontrada');
+    return Gym.fromMap(doc.id, doc.data()!);
+  }
 }
